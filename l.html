@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SkyShot | Aerial Photography</title>
+  <meta name="description" content="צילום מסחרי עם רחפן: נדל״ן, עסקים, תיעוד פרויקטים, מלונות וצימרים. הצג את העסק שלך מהגובה." />
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --text: #ffffff;
+      --muted: rgba(255,255,255,0.75);
+      --muted2: rgba(255,255,255,0.60);
+      --accent: #ffcc00;
+      --accent2: #25D366;
+      --ring: rgba(255,204,0,0.35);
+      --shadow: 0 18px 50px rgba(0,0,0,0.45);
+      --radius: 22px;
+      --radius2: 28px;
+      --max: 1120px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 70% -10%, rgba(255,204,0,0.18), transparent 60%),
+        radial-gradient(900px 500px at 10% 10%, rgba(110,231,255,0.10), transparent 60%),
+        radial-gradient(1200px 700px at 50% 120%, rgba(255,255,255,0.05), transparent 55%),
+        var(--bg);
+      line-height: 1.65;
+    }
+    a { color: inherit; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 18px; }
+    .nav {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(to bottom, rgba(11,15,25,0.78), rgba(11,15,25,0.50));
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav .inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 14px 0; gap: 14px;
+    }
+    .brand { display: flex; flex-direction: column; gap: 2px; }
+    .brand strong { font-size: 15px; letter-spacing: .3px; }
+    .brand span { font-size: 12px; color: var(--muted2); }
+    .navlinks { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .chip {
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.05);
+      text-decoration: none;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .chip:hover { background: rgba(255,255,255,0.08); }
+    .cta {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #0a0a0a;
+      font-weight: 800;
+      text-decoration: none;
+      border: 1px solid rgba(0,0,0,0.15);
+      box-shadow: 0 10px 25px rgba(255,204,0,0.15);
+      white-space: nowrap;
+    }
+    .hero { padding: 64px 0 28px; }
+    .heroGrid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+    @media (max-width: 920px) { .heroGrid { grid-template-columns: 1fr; } }
+    .heroCard {
+      border-radius: var(--radius2);
+      border: 1px solid rgba(255,255,255,0.10);
+      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.04));
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      position: relative;
+    }
+    .heroCard::before {
+      content: "";
+      position: absolute; inset: -2px;
+      background: radial-gradient(900px 420px at 80% 10%, rgba(255,204,0,0.22), transparent 60%);
+      pointer-events: none;
+    }
+    .heroMain { padding: 36px 22px; position: relative; }
+    .kicker {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--muted);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.10);
+      padding: 10px 12px;
+      border-radius: 999px;
+      font-size: 13px;
+    }
+    h1 {
+      margin: 18px 0 8px;
+      font-size: clamp(34px, 5vw, 54px);
+      line-height: 1.05;
+      letter-spacing: -0.5px;
+    }
+    .sub { margin: 10px 0 22px; color: var(--muted); font-size: 16px; max-width: 60ch; }
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 18px; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 14px 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .btn:hover { background: rgba(255,255,255,0.09); }
+    .btn.primary {
+      background: var(--accent);
+      color: #0a0a0a;
+      border-color: rgba(0,0,0,0.12);
+      box-shadow: 0 18px 38px rgba(255,204,0,0.14);
+    }
+    .metaRow { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 22px; color: var(--muted2); font-size: 13px; }
+    .metaRow span { display: inline-flex; align-items: center; gap: 8px; padding: 10px 12px; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 999px; }
+    .sideCard { padding: 18px; display: grid; gap: 12px; position: relative; }
+    .shot {
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,0.10);
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03)),
+        url('https://images.unsplash.com/photo-1524143986875-3b098d78b363?auto=format&fit=crop&w=1600&q=70');
+      background-size: cover;
+      background-position: center;
+      min-height: 220px;
+      position: relative;
+      overflow: hidden;
+    }
+    .shot::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,15,25,0.25), rgba(11,15,25,0.80)); }
+    .sideInner { border-radius: var(--radius); border: 1px solid rgba(255,255,255,0.10); background: rgba(255,255,255,0.05); padding: 18px; }
+    .sideInner h3 { margin: 0 0 6px; font-size: 16px; }
+    .sideInner p { margin: 0; color: var(--muted); font-size: 13px; }
+
+    .section { padding: 38px 0; }
+    .section h2 { margin: 0 0 16px; font-size: 26px; letter-spacing: -0.2px; }
+    .lead { color: var(--muted); margin: 0 0 22px; }
+
+    .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 14px; }
+    .card { grid-column: span 4; border-radius: var(--radius); border: 1px solid rgba(255,255,255,0.10); background: rgba(255,255,255,0.05); padding: 18px; box-shadow: 0 10px 28px rgba(0,0,0,0.30); }
+    @media (max-width: 960px) { .card { grid-column: span 6; } }
+    @media (max-width: 640px) { .card { grid-column: span 12; } }
+    .card h3 { margin: 0 0 8px; font-size: 16px; color: var(--accent); }
+    .card p { margin: 0; color: var(--muted); font-size: 14px; }
+
+    .whyList { display: grid; gap: 12px; }
+    .whyItem { border-radius: var(--radius); border: 1px solid rgba(255,255,255,0.10); background: rgba(255,255,255,0.05); padding: 16px; display: flex; gap: 12px; align-items: flex-start; }
+    .dot { width: 12px; height: 12px; border-radius: 999px; background: var(--accent); margin-top: 6px; box-shadow: 0 0 0 6px var(--ring); flex: 0 0 auto; }
+
+    .gallery { border-radius: var(--radius2); border: 1px solid rgba(255,255,255,0.10); background: rgba(255,255,255,0.04); padding: 18px; overflow: hidden; }
+    .ggrid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 12px; }
+    .gimg { grid-column: span 4; border-radius: 18px; border: 1px solid rgba(255,255,255,0.10); min-height: 160px; background-size: cover; background-position: center; position: relative; overflow: hidden; }
+    @media (max-width: 960px) { .gimg { grid-column: span 6; } }
+    @media (max-width: 640px) { .gimg { grid-column: span 12; } }
+    .gimg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,15,25,0.10), rgba(11,15,25,0.70)); }
+    .gcap { position: absolute; bottom: 10px; right: 12px; left: 12px; color: rgba(255,255,255,0.88); font-size: 12px; z-index: 2; display: flex; justify-content: space-between; gap: 10px; }
+
+    .contactWrap { border-radius: var(--radius2); border: 1px solid rgba(255,255,255,0.10); background: rgba(255,255,255,0.05); padding: 18px; box-shadow: var(--shadow); }
+    form { display: grid; gap: 12px; margin-top: 10px; }
+    .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 720px) { .row { grid-template-columns: 1fr; } }
+    input, textarea { width: 100%; padding: 14px 14px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.12); background: rgba(0,0,0,0.18); color: var(--text); outline: none; }
+    input:focus, textarea:focus { border-color: rgba(255,204,0,0.45); box-shadow: 0 0 0 6px var(--ring); }
+    textarea { min-height: 120px; resize: vertical; }
+    .small { color: var(--muted2); font-size: 12px; margin-top: 6px; }
+
+    .footer { padding: 26px 0 60px; color: var(--muted2); font-size: 12px; text-align: center; }
+
+    .waFloat { position: fixed; bottom: 18px; left: 18px; z-index: 2000; display: inline-flex; align-items: center; gap: 10px; padding: 12px 14px; border-radius: 999px; background: var(--accent2); color: #06220f; font-weight: 900; text-decoration: none; box-shadow: 0 14px 35px rgba(0,0,0,0.35); border: 1px solid rgba(0,0,0,0.18); }
+    .waFloat span { color: #ffffff; font-weight: 900; }
+  </style>
+</head>
+<body>
+  <div class="nav">
+    <div class="wrap inner">
+      <div class="brand">
+        <strong>SkyShot</strong>
+        <span>Aerial Photography</span>
+      </div>
+      <div class="navlinks">
+        <a class="chip" href="#services">שירותים</a>
+        <a class="chip" href="#why">למה אנחנו</a>
+        <a class="chip" href="#gallery">גלריה</a>
+        <a class="chip" href="#contact">צור קשר</a>
+        <a class="cta" href="https://wa.me/972529533028?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20SkyShot%20%F0%9F%98%8A%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%90%D7%99%D7%9A%20%D7%AA%D7%95%D7%9B%D7%9C%D7%95%20%D7%9C%D7%A2%D7%96%D7%95%D7%A8%20%D7%9C%D7%99.">דברו איתנו בוואטסאפ</a>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <section class="hero">
+      <div class="wrap heroGrid">
+        <div class="heroCard">
+          <div class="heroMain">
+            <div class="kicker">📸 צילום מסחרי עם רחפן</div>
+            <h1>הצג את העסק שלך מהגובה</h1>
+            <p class="sub">תמונות וידיאו מהאוויר שמדגישים את הייחודיות של הנכס/העסק וגורמים ללקוחות לעצור ולהתעניין.</p>
+            <div class="actions">
+              <a class="btn primary" href="#contact">קבל הצעת מחיר</a>
+              <a class="btn" href="https://wa.me/972529533028?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20SkyShot%20%F0%9F%98%8A%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%90%D7%99%D7%9A%20%D7%AA%D7%95%D7%9B%D7%9C%D7%95%20%D7%9C%D7%A2%D7%96%D7%95%D7%A8%20%D7%9C%D7%99.">שלחו וואטסאפ עכשיו</a>
+            </div>
+            <div class="metaRow">
+              <span>✅ צילום נדל״ן</span>
+              <span>✅ צילום עסקים</span>
+              <span>✅ תיעוד פרויקטים</span>
+              <span>✅ מלונות וצימרים</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="heroCard sideCard">
+          <div class="shot"></div>
+          <div class="sideInner">
+            <h3>SkyShot | Aerial Photography</h3>
+            <p>תוצאות חדות, זוויות שמספרות סיפור, ושירות מדויק שמותאם לצרכים שלך.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="section">
+      <div class="wrap">
+        <h2>השירותים שלנו</h2>
+        <p class="lead">בחר את החבילה שמתאימה לך – או שנבנה יחד משהו מותאם אישית.</p>
+        <div class="grid">
+          <div class="card">
+            <h3>צילום נדל״ן</h3>
+            <p>תציג את הנכסים שלך בצורה המרהיבה ביותר. תמונות באיכות גבוהה שימשכו את תשומת הלב של לקוחות פוטנציאליים.</p>
+          </div>
+          <div class="card">
+            <h3>צילום עסקים</h3>
+            <p>קמפיינים שיווקיים עם תמונות מקצועיות שידגישו את הייחודיות של העסק שלך.</p>
+          </div>
+          <div class="card">
+            <h3>תיעוד פרויקטים</h3>
+            <p>צילום מקצועי של פרויקטים בזמן אמת, עם אפשרות לוידיאו ותמונות שיביאו את הפרטים החשובים אל קדמת הבמה.</p>
+          </div>
+          <div class="card">
+            <h3>צילום עסקים קטנים / בית מלון / צימרים</h3>
+            <p>צילום מהגובה, מתוך המבנה ומבחוץ – כולל סיורים ויזואליים.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="why" class="section">
+      <div class="wrap">
+        <h2>למה לבחור ב‑SkyShot</h2>
+        <p class="lead">איכות, ניסיון ושירות — בלי כאב ראש.</p>
+        <div class="whyList">
+          <div class="whyItem">
+            <div class="dot"></div>
+            <div>
+              <strong>איכות ללא תחרות</strong>
+              <div style="color: var(--muted);">שימוש בטכנולוגיה המתקדמת ביותר לצילום עם רחפן.</div>
+            </div>
+          </div>
+          <div class="whyItem">
+            <div class="dot"></div>
+            <div>
+              <strong>ניסיון מקצועי</strong>
+              <div style="color: var(--muted);">עם ידע רב בתחום הצילום והעבודה עם רחפנים.</div>
+            </div>
+          </div>
+          <div class="whyItem">
+            <div class="dot"></div>
+            <div>
+              <strong>שירות מותאם אישית</strong>
+              <div style="color: var(--muted);">חבילות צילום מותאמות אישית לצרכים שלך.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery" class="section">
+      <div class="wrap">
+        <h2>גלריה</h2>
+        <p class="lead">[הכנס כאן תמונות מהפרויקטים שלך או קישורים לגלריה]</p>
+        <div class="gallery">
+          <div class="ggrid">
+            <div class="gimg" style="background-image:url('https://images.unsplash.com/photo-1508614589041-895b88991e3e?auto=format&fit=crop&w=1600&q=70');">
+              <div class="gcap"><span>נדל״ן</span><span>תמונה לדוגמא</span></div>
+            </div>
+            <div class="gimg" style="background-image:url('https://images.unsplash.com/photo-1487887235947-a955ef187fcc?auto=format&fit=crop&w=1600&q=70');">
+              <div class="gcap"><span>עסקים</span><span>תמונה לדוגמא</span></div>
+            </div>
+            <div class="gimg" style="background-image:url('https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=1600&q=70');">
+              <div class="gcap"><span>פרויקטים</span><span>תמונה לדוגמא</span></div>
+            </div>
+          </div>
+          <div class="small">אפשר להחליף את התמונות לדוגמא בתמונות שלך.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="wrap">
+        <h2>בואו נתחיל</h2>
+        <p class="lead">מלאו את הטופס למטה או פנו אלינו כדי לקבל הצעת מחיר.</p>
+        <div class="contactWrap">
+          <div style="display:flex; flex-wrap:wrap; gap: 10px; align-items:center;">
+            <a class="btn primary" href="https://wa.me/972529533028?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20SkyShot%20%F0%9F%98%8A%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%90%D7%99%D7%9A%20%D7%AA%D7%95%D7%9B%D7%9C%D7%95%20%D7%9C%D7%A2%D7%96%D7%95%D7%A8%20%D7%9C%D7%99.">🔗 צור קשר עכשיו בוואטסאפ</a>
+            <a class="btn" href="mailto:shovalnahman@gmail.com">📧 shovalnahman@gmail.com</a>
+            <a class="btn" href="tel:+972529533028">📞 052-9533028</a>
+          </div>
+          <div class="small">הטופס פותח הודעת וואטסאפ עם הפרטים שמילאת (בלי שרת).</div>
+
+          <form id="leadForm">
+            <div class="row">
+              <input name="name" placeholder="שם מלא" autocomplete="name" required />
+              <input name="phone" placeholder="טלפון" autocomplete="tel" />
+            </div>
+            <input name="service" placeholder="מה מעניין אותך? (נדל״ן / עסק / פרויקט / צימר…)" />
+            <textarea name="message" placeholder="פרטים נוספים (אזור, תאריך, דגשים…)"></textarea>
+            <button class="btn primary" type="submit">שלח בוואטסאפ</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer wrap">© SkyShot | Aerial Photography</div>
+  </main>
+
+  <a class="waFloat" href="https://wa.me/972529533028?text=%D7%A9%D7%9C%D7%95%D7%9D%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%93%D7%A8%D7%9A%20SkyShot%20%F0%9F%98%8A%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%90%D7%99%D7%9A%20%D7%AA%D7%95%D7%9B%D7%9C%D7%95%20%D7%9C%D7%A2%D7%96%D7%95%D7%A8%20%D7%9C%D7%99." aria-label="WhatsApp">💬 <span>WhatsApp</span></a>
+
+  <script>
+    (function() {
+      const PHONE = "972529533028";
+      const form = document.getElementById('leadForm');
+
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const data = new FormData(form);
+
+        const fullName = (data.get('name') || '').toString().trim();
+        const phoneIn  = (data.get('phone') || '').toString().trim();
+        const service  = (data.get('service') || '').toString().trim();
+        const message  = (data.get('message') || '').toString().trim();
+
+        const lines = [];
+        lines.push("שלום, הגעתי דרך SkyShot 😊");
+        if (fullName) lines.push("שם: " + fullName);
+        if (phoneIn)  lines.push("טלפון: " + phoneIn);
+        if (service)  lines.push("שירות: " + service);
+        if (message)  lines.push("פרטים: " + message);
+        lines.push("אשמח לשמוע איך תוכלו לעזור לי.");
+
+        const text = encodeURIComponent(lines.join("\n"));
+        const url = "https://wa.me/" + PHONE + "?text=" + text;
+        window.open(url, "_blank");
+      });
+    })();
+  </script>
+</body>
+</html>
